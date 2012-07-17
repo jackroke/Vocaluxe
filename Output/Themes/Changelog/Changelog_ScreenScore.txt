@@ -1,6 +1,14 @@
 ScreenScore
 
 ++++++++++
+Version 3:
+
+Add:
+new option in <Text>-Tag in <TextScoreP$N$>,<TextRatingP$N$>,<TextDifficultyP$N$>
+<Text /> for normal string
+<Text>Short</Text> for short string
+
+++++++++++
 Version 2:
 
 Add: Elements for up to 6 players! (Texts and statics!)
