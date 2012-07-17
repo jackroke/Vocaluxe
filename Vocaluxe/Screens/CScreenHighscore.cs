@@ -158,7 +158,7 @@ namespace Vocaluxe.Screens
                         name += " (P" + (_Scores[_Pos + p].LineNr + 1).ToString() + ")";
                     Texts[htTexts(TextName[p])].Text = name;
 
-                    Texts[htTexts(TextScore[p])].Text = _Scores[_Pos + p].Score.ToString("00000");
+                    Texts[htTexts(TextScore[p])].Text = _Scores[_Pos + p].Score.ToString("0000");
                     Texts[htTexts(TextDate[p])].Text = _Scores[_Pos + p].Date;
 
                     if (isNewEntry(_Scores[_Pos + p].ID) == true)
