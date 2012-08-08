@@ -4,9 +4,7 @@ ScreenScore
 Version 3:
 
 Add:
-new option in <Text>-Tag in <TextScoreP$N$>,<TextRatingP$N$>,<TextDifficultyP$N$>
-<Text /> for normal string
-<Text>Short</Text> for short string
+new option for short strings in Score, Rating and Difficulty
 
 ++++++++++
 Version 2:

@@ -2,6 +2,7 @@
 <root>
   <ScreenLoad>
     <ScreenVersion>1</ScreenVersion>
+    <ThemeSettings />
     <Background1>
       <!--<Type>: Background type: None, Color, Texture, Video-->
       <Type>Texture</Type>

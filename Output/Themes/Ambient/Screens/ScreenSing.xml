@@ -2,6 +2,7 @@
 <root>
   <ScreenSing>
     <ScreenVersion>4</ScreenVersion>
+    <ThemeSettings />
     <Background1>
       <!--<Type>: Background type: None, Color, Texture, Video-->
       <Type>None</Type>
@@ -144,7 +145,7 @@
       <!--<Skin>: Texture name-->
       <Skin>Pointer</Skin>
       <!--<X>, <Y>, <Z>, <W>, <H>: Static position, width and height-->
-      <X>44</X>
+      <X>47</X>
       <Y>702</Y>
       <Z>-1,25</Z>
       <W>2</W>

@@ -2,6 +2,7 @@
 <root>
   <ScreenOptionsVideo>
     <ScreenVersion>2</ScreenVersion>
+    <ThemeSettings />
     <Background1>
       <!--<Type>: Background type: None, Color, Texture, Video-->
       <Type>Video</Type>

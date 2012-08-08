@@ -2,6 +2,7 @@
 <root>
   <ScreenHighscore>
     <ScreenVersion>1</ScreenVersion>
+    <ThemeSettings />
     <Background1>
       <!--<Type>: Background type: None, Color, Texture, Video-->
       <Type>Video</Type>
@@ -127,7 +128,7 @@
       <!--<Font>: Text font name-->
       <Font>Outline</Font>
       <!--<Text>: Text or translation tag-->
-      <Text />
+      <Text>TR_GAMEMODE_NORMAL</Text>
       <!--<Reflection> If exists:-->
       <!--   <Space>: Reflection Space-->
       <!--   <Height>: Reflection Height-->

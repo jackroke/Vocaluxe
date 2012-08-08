@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 using Vocaluxe.Lib.Draw;
+using System.Collections;
 
 namespace Vocaluxe.Base
 {
@@ -545,6 +546,14 @@ namespace Vocaluxe.Base
                 }
             }
             return false;
+        }
+
+        public static bool TryGetNextValueAndTagFromXML(XPathNavigator Navigator, ref string tag, ref string value)
+        {
+            tag = Navigator.Name;
+            value = Navigator.Value;
+
+            return Navigator.MoveToNext();
         }
 
         public static bool GetValueFromXML(string Cast, XPathNavigator Navigator, ref string Value, string DefaultValue)

@@ -2,6 +2,7 @@
 <root>
   <PopupScreenPlayerControl>
     <ScreenVersion>1</ScreenVersion>
+    <ThemeSettings />
     <StaticBG>
       <!--<Skin>: Texture name-->
       <Skin>Menu</Skin>

@@ -215,6 +215,7 @@
     <Compile Include="Menu\CSelectSlide.cs" />
     <Compile Include="Menu\CStatic.cs" />
     <Compile Include="Menu\CText.cs" />
+    <Compile Include="Menu\CThemeSettings.cs" />
     <Compile Include="Menu\IMenuElement.cs" />
     <Compile Include="Menu\SingNotes\CSingNotes.cs" />
     <Compile Include="Menu\SingNotes\CSingNotesClassic.cs" />

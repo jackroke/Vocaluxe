@@ -30,10 +30,10 @@ namespace Vocaluxe.Screens
         private int _Round;
         private CPoints _Points;
         private Stopwatch timer;
-        /** if true the TR_SCREENSCORE_POINTS/TR_SCREENSCORE_RATING/TR_SCREENSCORE_GAMEDIFFICULTY string will not be displayed */
-        private bool[,] _ShortTextScores;
-        private bool[,] _ShortTextRatings;
-        private bool[,] _ShortTextDifficulty;
+        /** value for test if the TR_SCREENSCORE_POINTS/TR_SCREENSCORE_RATING/TR_SCREENSCORE_GAMEDIFFICULTY strings should be displayed */
+        private int _ShortTextScore;
+        private int _ShortTextRating;
+        private int _ShortTextDifficulty;
 
         public CScreenScore()
         {
@@ -65,27 +65,28 @@ namespace Vocaluxe.Screens
         public override void LoadTheme()
         {
             base.LoadTheme();
-            setShortTexts();
+            _ShortTextScore = GetNumberForShortStrings(ThemeSettings.GetValueOf("ShortScore"));
+            _ShortTextRating = GetNumberForShortStrings(ThemeSettings.GetValueOf("ShortRating"));
+            _ShortTextDifficulty = GetNumberForShortStrings(ThemeSettings.GetValueOf("ShortDifficulty"));
         }
 
         /**
-         * Initializes the _ShortTextScores/_ShortTextRatings/_ShortTextDifficulty array.
-         * Trys to find the "Short" tag in the xml-file to set the
-         * corresponding field in the array
+         * Get value for short strings
          */
-        private void setShortTexts()
+        private int GetNumberForShortStrings(string ShortString)
         {
-            _ShortTextScores = new bool[CSettings.MaxNumPlayer, CSettings.MaxNumPlayer];
-            _ShortTextRatings = new bool[CSettings.MaxNumPlayer, CSettings.MaxNumPlayer];
-            _ShortTextDifficulty = new bool[CSettings.MaxNumPlayer, CSettings.MaxNumPlayer];
-            for (int numPlayer = 0; numPlayer < CSettings.MaxNumPlayer; numPlayer++)
+            try
             {
-                for (int player = numPlayer; player < CSettings.MaxNumPlayer; player++)
-                {
-                    _ShortTextScores[numPlayer, player] = ("Short" == Texts[htTexts(TextScores[numPlayer, player])].Text);
-                    _ShortTextRatings[numPlayer, player] = ("Short" == Texts[htTexts(TextRatings[numPlayer, player])].Text);
-                    _ShortTextDifficulty[numPlayer, player] = ("Short" == Texts[htTexts(TextDifficulty[numPlayer, player])].Text);
-                }
+                return Convert.ToInt32(ShortString.Substring(0, ShortString.IndexOf("Player")));
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return (CSettings.MaxNumPlayer + 1);
+            }
+            catch (Exception)
+            {
+                CLog.LogError("Can't find ThemeSettings Element \"" + ShortString + "\" in Screen " + _ThemeName);
+                return (CSettings.MaxNumPlayer + 1);
             }
         }
 
@@ -164,6 +165,7 @@ namespace Vocaluxe.Screens
                         {
                             StaticPointsBarDrawnPoints[p] = player[p].Points;
                         }
+
                         Statics[htStatics(StaticPointsBar[p, CGame.NumPlayer - 1])].Rect.H = ((float)StaticPointsBarDrawnPoints[p]) * (Statics[htStatics(StaticPointsBarBG[p, CGame.NumPlayer - 1])].Rect.H / 10000);
                         Statics[htStatics(StaticPointsBar[p, CGame.NumPlayer - 1])].Rect.Y = Statics[htStatics(StaticPointsBarBG[p, CGame.NumPlayer - 1])].Rect.H + Statics[htStatics(StaticPointsBarBG[p, CGame.NumPlayer - 1])].Rect.Y - Statics[htStatics(StaticPointsBar[p, CGame.NumPlayer - 1])].Rect.H;
                     }
@@ -291,7 +293,7 @@ namespace Vocaluxe.Screens
             {
                 Texts[htTexts(TextNames[p, CGame.NumPlayer - 1])].Text = player[p].Name;
 
-                if (_ShortTextScores[p, CGame.NumPlayer - 1])
+                if (_ShortTextScore <= CGame.NumPlayer)
                 {
                     Texts[htTexts(TextScores[p, CGame.NumPlayer - 1])].Text = ((int)Math.Round(player[p].Points)).ToString("0000");
                 }
@@ -299,8 +301,8 @@ namespace Vocaluxe.Screens
                 {
                     Texts[htTexts(TextScores[p, CGame.NumPlayer - 1])].Text = ((int)Math.Round(player[p].Points)).ToString("0000") + " " + CLanguage.Translate("TR_SCREENSCORE_POINTS");
                 }
-                                
-                if (_ShortTextRatings[p, CGame.NumPlayer - 1])
+
+                if (_ShortTextRating <= CGame.NumPlayer)
                 {
                     Texts[htTexts(TextRatings[p, CGame.NumPlayer - 1])].Text = CLanguage.Translate(GetRating((int)Math.Round(player[p].Points)));
                 }
@@ -308,8 +310,8 @@ namespace Vocaluxe.Screens
                 {
                     Texts[htTexts(TextRatings[p, CGame.NumPlayer - 1])].Text = CLanguage.Translate("TR_SCREENSCORE_RATING") + ": " + CLanguage.Translate(GetRating((int)Math.Round(player[p].Points)));
                 }
-                
-                if (_ShortTextDifficulty[p, CGame.NumPlayer - 1])
+
+                if (_ShortTextDifficulty <= CGame.NumPlayer)
                 {
                     Texts[htTexts(TextDifficulty[p, CGame.NumPlayer - 1])].Text = CLanguage.Translate(player[p].Difficulty.ToString());
                 }

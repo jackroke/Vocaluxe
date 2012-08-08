@@ -83,7 +83,7 @@ namespace Vocaluxe.Base
     static class CTheme
     {
         // Version number for main theme and skin files. Increment it, if you've changed something on the theme files!
-        const int ThemeSystemVersion = 5;
+        const int ThemeSystemVersion = 6;
         const int SkinSystemVersion = 3;
 
         #region Vars

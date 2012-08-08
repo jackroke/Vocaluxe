@@ -26,7 +26,8 @@ namespace Vocaluxe.Menu
     {        
         private List<CInteraction> _Interactions;
         private int _Selection = 0;
-                
+
+        private CThemeSettings _ThemeSettings;
         private List<CBackground> _Backgrounds;
         private List<CButton> _Buttons;
         private List<CText> _Texts;
@@ -336,6 +337,9 @@ namespace Vocaluxe.Menu
             // Screen Version
             writer.WriteElementString("ScreenVersion", _ScreenVersion.ToString());
 
+            // ThemeSettings
+            _ThemeSettings.SaveTheme(writer);            
+            
             // Backgrounds
             for (int i = 0; i < _Backgrounds.Count; i++)
                 _Backgrounds[i].SaveTheme(writer);
@@ -564,6 +568,14 @@ namespace Vocaluxe.Menu
             get
             {
                 return _Texts.ToArray();
+            }
+        }
+
+        public CThemeSettings ThemeSettings
+        {
+            get
+            {
+                return _ThemeSettings;
             }
         }
 
@@ -1924,6 +1936,10 @@ namespace Vocaluxe.Menu
         private void LoadThemeBasics(XPathNavigator navigator, int SkinIndex)
         {
             string value = String.Empty;
+
+            // ThemeSettings
+            _ThemeSettings = new CThemeSettings();
+            _ThemeSettings.LoadTheme("//root/" + _ThemeName, "ThemeSettings", navigator, SkinIndex);
 
             // Backgrounds
             CBackground background = new CBackground();

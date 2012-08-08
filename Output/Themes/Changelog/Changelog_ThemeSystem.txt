@@ -2,6 +2,17 @@ Theme System
 
 
 ++++++++++
+Version 6:
+
+Added:
+<ThemeSettings> to all Screens
+
+Now it's possible to give some options to the theme-designer.
+Write a new tag and value in <ThemeSettings> and you can request the string-value 
+with ThemeSettings.GetValueOf("tag")
+
+
+++++++++++
 Version 5 (yes it's still 5!):
 
 Added:
